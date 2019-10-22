@@ -26,11 +26,26 @@
           Data Mahasiswa Tidak Ditemukan.
         </div>
       <?php endif; ?>
+
+      <thead>
+        <?php if($this->session->flashdata('flash') ) : ?>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Data Mahasiswa <strong> Berhasil</strong><?= $this->session->flashdata('flash'); ?>.
+                <button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <?php endif; ?>
+      </thead>
+
       <ul class="list-group">
         <?php foreach ($mahasiswa as $mhs) : ?>
         <li class="list-group-item">
           <?= $mhs['nama']; ?>
-          <a href="<?= base_url(); ?>mahasiswa/hapus/<?= $mhs['id']; ?>" class="badge badge-danger float-right tombol-hapus">Hapus</a>
+          <a href="<?= base_url(); ?>mahasiswa/hapus/<?= $mhs['id']; ?>" class="badge badge-danger float-right tombol-hapus" onclick="return confirm('Yakin ?');">Hapus</a>
           <a href="<?= base_url(); ?>mahasiswa/ubah/<?= $mhs['id']; ?>" class="badge badge-success float-right">Ubah</a>
           <a href="<?= base_url(); ?>mahasiswa/detail/<?= $mhs['id']; ?>" class="badge badge-primary float-right">Detail</a>
         </li>
